@@ -1,0 +1,47 @@
+name: GitHub Pages
+on:
+  push:
+    branches:
+    - v3.6
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - name: Install dependencies
+      run: |
+           npm install -g @angular/cli
+           mkdir user
+           cd user
+           ls -la
+           npm i
+           npm run build:prod
+           ls -la
+    - name: zipping
+      uses: papeloto/action-zip@v1
+      with:
+          files: dist/user
+          dest: user.zip
+    - name: Deploy to Servers
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          SOURCE: "user.zip"
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+    
+
+           
+              
+           
+
+   
+          
