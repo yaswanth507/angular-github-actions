@@ -29,11 +29,6 @@ jobs:
       with:
           files: dist/user
           dest: user.zip
-    - name: Approve/Deny
-      uses: trstringer/manual-approval@v1
-      with:
-        secret: ${{ github.TOKEN }}
-        approvers: yaswanth507
     - name: Deploy to Servers
       uses: easingthemes/ssh-deploy@main
       env:
