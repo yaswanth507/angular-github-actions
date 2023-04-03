@@ -33,7 +33,7 @@ jobs:
            ls -la
            cd dist
            ls -la
-    - name: zipping
+    - name: zippings
       uses: papeloto/action-zip@v1
       with:
           files: dist/user
