@@ -10,7 +10,7 @@ jobs:
       - name: Build
         run: echo building
   deploy:
-    name: deploy
+    name: deploys
     runs-on: ubuntu-latest
     needs: build
     steps:
