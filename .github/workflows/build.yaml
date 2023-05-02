@@ -45,4 +45,10 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.USER_DIR }}
-          script: sh ui-builds-unzip.sh 
+    - uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+            bash /home/ubuntu/zc-v36-ui/ui-builds-unzip.sh
